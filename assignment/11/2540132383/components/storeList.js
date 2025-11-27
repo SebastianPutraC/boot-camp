@@ -33,7 +33,7 @@ export default function StoreList()
     };
 
     const deleteItem = async (id) => {
-        await deleteDoc(doc(db, "foods", id));
+        await deleteDoc(doc(db, "store", id));
     };
 
     const {theme} = useThemeContext()
@@ -125,10 +125,11 @@ export default function StoreList()
                         <th>Description</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Total Price * Quantity</th>
                         {role === "admin" &&
-                        <th>Edit</th>}
+                            <th>Edit</th>}
                         {role === "admin" &&
-                        <th>Delete</th>}
+                            <th>Delete</th>}
                     </tr>
                     </thead>
                     <tbody>
@@ -140,13 +141,13 @@ export default function StoreList()
                             <td>{item.quantity}</td>
                             <td>{item.totalPrice}</td>
                             {role === "admin" &&
-                            <td>
-                                <button className="buttonStyle" onClick={() => showEditModal(item.id)}> Edit </button>
-                            </td>}
+                                <td>
+                                    <button className="buttonStyle" onClick={() => showEditModal(item.id)}> Edit </button>
+                                </td>}
                             {role === "admin" &&
-                            <td>
-                                <button className="buttonStyle" onClick={() => deleteItem(item.id)}>Delete</button>
-                            </td>}
+                                <td>
+                                    <button className="buttonStyle" onClick={() => deleteItem(item.id)}>Delete</button>
+                                </td>}
                         </tr>
                     ))}
                     </tbody>
@@ -154,4 +155,3 @@ export default function StoreList()
             </div>
         </div>
     )
-}
